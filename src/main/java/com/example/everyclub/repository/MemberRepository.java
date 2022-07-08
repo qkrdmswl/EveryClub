@@ -1,5 +1,8 @@
 package com.example.everyclub.repository;
 
-//public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
-//
-//}
+import com.example.everyclub.Entity.MemberEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
+
+}

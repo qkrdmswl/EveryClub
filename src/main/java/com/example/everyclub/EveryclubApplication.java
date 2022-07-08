@@ -1,5 +1,6 @@
 package com.example.everyclub;
 
+import com.example.everyclub.DTO.MemberSaveDTO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,19 +18,6 @@ public class EveryclubApplication {
 	public String index() {
 		return "index";
 	}
-
-	// 회원가입 페이지 요청
-	@GetMapping("save")
-	public String saveForm() {
-		return "member/save";
-	}
-
-//	// 회원가입 정보 저장
-//	@PostMapping("save")
-//	public String save(@ModelAttribute MemberSaveDTO memberSaveDTO) {
-//		Long memberId = ms.save(memberSaveDTO);
-//		return "member/login";
-//	}
 
 }
 
