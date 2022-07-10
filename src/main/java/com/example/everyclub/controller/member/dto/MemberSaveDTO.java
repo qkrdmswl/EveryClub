@@ -1,4 +1,4 @@
-package com.example.everyclub.DTO;
+package com.example.everyclub.controller.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package com.example.everyclub.Entity;
+package com.example.everyclub.Entity.member;
 
-import com.example.everyclub.DTO.MemberSaveDTO;
+import com.example.everyclub.controller.member.dto.MemberSaveDTO;
 import lombok.Getter;
 import lombok.Setter;
 
