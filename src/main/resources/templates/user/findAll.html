@@ -19,14 +19,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="member: ${memberList}">
-                <td th:text="${member.memberId}">번호</td>
-                <td th:text="${member.memberEmail}">이메일</td>
-                <td th:text="${member.memberPassword}">비밀번호</td>
-                <td th:text="${member.memberName}">이름</td>
+            <tr th:each="user: ${userList}">
+                <td th:text="${user.userId}">회원번호</td>
+                <td th:text="${user.userName}">이름</td>
+                <td th:text="${user.userEmail}">이메일</td>
+                <td th:text="${user.userPassword}">비밀번호</td>
+                <td th:text="${user.userPhone}">전화번호</td>
                 <!-- detail 주소 처리방식 @{|/주소/${같이 보낼 데이터}|} -->
-                <td><a th:href="@{|/member/${member.memberId}|}">조회</a></td>
-                <td><a th:href="@{|/member/delete/${member.memberId}|}">삭제</a></td>
+                <td><a th:href="@{|/user/${user.userId}|}">조회</a></td>
+                <td><a th:href="@{|/user/user/${user.userId}|}">삭제</a></td>
                 <td></td>
             </tr>
         </tbody>
