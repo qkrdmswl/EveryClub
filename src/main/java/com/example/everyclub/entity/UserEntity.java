@@ -19,19 +19,19 @@ public class UserEntity {
     @Column(name = "userId", unique = true)
     private Long userId;
 
-    @Column(length = 100)
+    @Column(name = "userEmail", length = 100)
     private String userEmail;  // Entity에서는 _(언더바) 금지. 오류 발생 가능성 있음
 
-    @Column(length = 20)
+    @Column(name = "userPassword", length = 20)
     private String userPassword;
 
-    @Column(length = 100)
+    @Column(name = "userName", length = 100)
     private String userName;
 
-    @Column(length = 20)
+    @Column(name = "userPhone", length = 20)
     private String userPhone;
 
-    @Column()
+    @Column(name = "userRegdate")
     private LocalDateTime userRegdate;
 
     public static UserEntity saveMember(UserSaveDto userSaveDto) {
