@@ -1,6 +1,6 @@
 package com.example.everyclub.controller.dto;
 
-import com.example.everyclub.entity.UserEntity;
+import com.example.everyclub.entity.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

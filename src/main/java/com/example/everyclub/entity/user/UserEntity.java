@@ -1,19 +1,17 @@
-package com.example.everyclub.entity;
+package com.example.everyclub.entity.user;
 
 import com.example.everyclub.controller.dto.UserSaveDto;
+import com.example.everyclub.entity.BaseTimeEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @Table(name="User")
-public class UserEntity extends BaseTimeEntity{
+public class UserEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
