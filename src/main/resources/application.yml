@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://everyclub-rds.cijbaereps1o.ap-northeast-2.rds.amazonaws.com:3306/everyclub?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://everyclub-rds.cijbaereps1o.ap-northeast-2.rds.amazonaws.com:3306/everyclub?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: admin
     password: rlatngus11
   thymeleaf:

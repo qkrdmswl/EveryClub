@@ -3,7 +3,7 @@ package com.example.everyclub.service;
 import com.example.everyclub.controller.dto.UserDetailDto;
 import com.example.everyclub.controller.dto.UserLoginDto;
 import com.example.everyclub.controller.dto.UserSaveDto;
-import com.example.everyclub.entity.UserEntity;
+import com.example.everyclub.entity.user.UserEntity;
 import com.example.everyclub.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
