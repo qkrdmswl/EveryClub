@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.1'
+	id 'org.springframework.boot' version '2.5.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
@@ -22,13 +22,15 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.29'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.0'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.7.0'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-devtools'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.7.0'
+	implementation 'org.springframework.boot:spring-boot-devtools:2.7.0'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.0'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
 	runtimeOnly 'mysql:mysql-connector-java:8.0.29'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.0'
 }
 
 tasks.named('test') {

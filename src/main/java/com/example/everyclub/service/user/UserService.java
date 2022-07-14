@@ -1,4 +1,4 @@
-package com.example.everyclub.service;
+package com.example.everyclub.service.user;
 
 import com.example.everyclub.controller.dto.UserDetailDto;
 import com.example.everyclub.controller.dto.UserLoginDto;

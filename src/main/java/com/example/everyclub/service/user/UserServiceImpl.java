@@ -1,4 +1,4 @@
-package com.example.everyclub.service;
+package com.example.everyclub.service.user;
 
 import com.example.everyclub.controller.dto.UserDetailDto;
 import com.example.everyclub.controller.dto.UserLoginDto;
@@ -26,9 +26,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(userEntity).getUserId();
     }
 
-    @Override
+   @Override
     public boolean login(UserLoginDto userLoginDto) {
-        UserEntity userEntity = userRepository.findByUserEmail(userLoginDto.getUserEmail());
+        UserEntity userEntity = userRepository.findByUserEmail(userLoginDto.getUserEmail()).get();
         if (userEntity != null) {
             if(userEntity.getUserPassword().equals(userLoginDto.getUserPassowrd())) {
                 return true;
