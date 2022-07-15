@@ -11,17 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class UserDto {
-    private Long userId;
     private String userEmail;
     private String userPassword;
     private String userName;
     private String userPhone;
 
     public UserDto(UserEntity user) {
-        this.userId = user.getUserId();
         this.userEmail = user.getUserEmail();
         this.userPassword = user.getUserPassword();
-        this.userName = user.getUserName();
+        this.userName = user.getName();
         this.userPhone = user.getUserPhone();
     }
 

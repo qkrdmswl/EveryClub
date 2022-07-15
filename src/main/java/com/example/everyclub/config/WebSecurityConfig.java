@@ -1,28 +1,28 @@
 package com.example.everyclub.config;
 
+import com.example.everyclub.service.user.AuthUserService;
 import com.example.everyclub.service.user.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor // 생성자가 필요한 이유 -> 필드 자동 초기화
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
+    private  final AuthUserService authUserService;
 
     @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    @Bean // 개발자가 직접 제어가 불가능한 외부 라이브러리를 Bean으로 만들 때
+    public AuthenticationManager authenticationManagerBean() throws Exception { // 원화는 시점에서 로그인 처리
         return super.authenticationManagerBean();
     }
 
@@ -38,7 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/user/login")
-                .loginProcessingUrl("/user/login")
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
@@ -47,5 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .oauth2Login()
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(authUserService)
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
 }
