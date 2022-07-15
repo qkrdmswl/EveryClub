@@ -1,6 +1,8 @@
 server:
   port: 8080
 spring:
+  profiles:
+    include: oauth
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://everyclub-rds.cijbaereps1o.ap-northeast-2.rds.amazonaws.com:3306/everyclub?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
@@ -15,7 +17,7 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
