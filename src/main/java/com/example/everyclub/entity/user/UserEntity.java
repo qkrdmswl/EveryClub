@@ -29,7 +29,7 @@ public class UserEntity extends BaseTimeEntity implements UserDetails {
     @Column(name = "snsId", length = 255)
     private String snsId;
 
-    @Column(name = "userPassword", length = 20)
+    @Column(name = "userPassword")
     private String userPassword;
 
     @Column(name = "userName", length = 100)
