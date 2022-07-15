@@ -9,7 +9,7 @@ public class SessionUserDto {
     private String email;
 
     public SessionUserDto(UserEntity user){
-        this.name = user.getUserName();
+        this.name = user.getName();
         this.email = user.getUserEmail();
     }
 }

@@ -26,7 +26,7 @@ public class UserDetailDto {
         userDetailDto.setUserId(userEntity.getUserId());
         userDetailDto.setUserEmail(userEntity.getUserEmail());
         userDetailDto.setUserPassword(userEntity.getUserPassword());
-        userDetailDto.setUserName(userEntity.getUserName());
+        userDetailDto.setUserName(userEntity.getName());
         return userDetailDto;
     }
 

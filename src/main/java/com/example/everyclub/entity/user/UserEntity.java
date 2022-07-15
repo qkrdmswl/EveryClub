@@ -1,17 +1,22 @@
 package com.example.everyclub.entity.user;
 
-import com.example.everyclub.controller.dto.UserSaveDto;
 import com.example.everyclub.entity.BaseTimeEntity;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
-@Setter
+@Setter // Entity 클래스에서는 X, DTO 만들어서 해주자.
 @Table(name="User")
-@NoArgsConstructor
-public class UserEntity extends BaseTimeEntity {
+@NoArgsConstructor // 기본 생성자 자동으로 추가
+public class UserEntity extends BaseTimeEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,27 +33,28 @@ public class UserEntity extends BaseTimeEntity {
     private String userPassword;
 
     @Column(name = "userName", length = 100)
-    private String userName;
+    private String name;
 
     @Column(name = "userPhone", length = 20)
     private String userPhone;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "default ")
     private Role role;
 
-    @Builder
-    public UserEntity(Long id, String email, String name, String phone, Role role, String snsId) {
+    @Builder // 빌더 자동 생성
+    public UserEntity(Long id, String email, String name, String phone, Role role, String snsId, String password) {
         this.userId = id;
-        this.userName = name;
+        this.name = name;
         this.userEmail = email;
         this.userPhone = phone;
+        this.userPassword = password;
         this.role = role;
         this.snsId = snsId;
     }
 
     public UserEntity update(String name, String password, String phone) {
-        this.userName = name;
+        this.name = name;
         this.userPassword = password;
         this.userPhone = phone;
         return this;
@@ -62,14 +68,40 @@ public class UserEntity extends BaseTimeEntity {
         return this.role.getValue();
     }
 
-    public static UserEntity saveMember(UserSaveDto userSaveDto) {
-        UserEntity userEntity = new UserEntity();
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> roles = new HashSet<>();
+        roles.add(new SimpleGrantedAuthority(role.toString()));
+        return roles;
+    }
 
-        userEntity.setUserEmail(userSaveDto.getUserEmail());
-        userEntity.setUserPassword(userSaveDto.getUserPassword());
-        userEntity.setUserName(userSaveDto.getUserName());
-        userEntity.setUserPhone(userSaveDto.getUserPhone());
+    @Override
+    public String getPassword() {
+        return userPassword;
+    }
 
-        return userEntity;
+    @Override
+    public String getUsername() {
+        return userEmail;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
