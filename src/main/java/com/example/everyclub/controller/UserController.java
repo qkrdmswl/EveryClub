@@ -1,23 +1,27 @@
 package com.example.everyclub.controller;
 
 import com.example.everyclub.controller.dto.UserDetailDto;
-import com.example.everyclub.controller.dto.UserLoginDto;
-import com.example.everyclub.controller.dto.UserSaveDto;
+import com.example.everyclub.controller.dto.UserDto;
+import com.example.everyclub.service.user.AuthUserService;
 import com.example.everyclub.service.user.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-@RequiredArgsConstructor  // 생성자(private final UserService userService) 주입을 위해 사용
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserServiceImpl userServiceImpl;
+    private final AuthUserService userService;
 
     // 회원가입 페이지 요청
     @GetMapping("save")
@@ -27,9 +31,9 @@ public class UserController {
 
     // 회원가입 정보 저장
     @PostMapping("save")
-    public String save(@ModelAttribute UserSaveDto userSaveDTO) {
-        Long userId = userServiceImpl.save(userSaveDTO);
-        return "user/login";
+    public String save(UserDto userDto) {
+        userService.save(userDto);
+        return "redirect:/login";
     }
 
     @GetMapping("login")
@@ -37,14 +41,10 @@ public class UserController {
         return "user/login";
     }
 
-    @PostMapping("login")
-    public String login(@ModelAttribute UserLoginDto userLoginDto, HttpSession session) {
-        if(userServiceImpl.login(userLoginDto)) {
-            session.setAttribute("loginEmail", userLoginDto.getUserEmail());
-            return "redirect:/user/";
-        } else {
-            return "user/login";
-        }
+    @GetMapping("/logout")
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        return "redirect:/login";
     }
 
     @GetMapping
