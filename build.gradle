@@ -31,6 +31,8 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java:8.0.29'
 	annotationProcessor 'org.projectlombok:lombok:1.18.24'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.0'
+
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
 }
 
 tasks.named('test') {

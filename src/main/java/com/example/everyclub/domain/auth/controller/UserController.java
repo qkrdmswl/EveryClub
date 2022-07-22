@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("save")
     public String save(UserDto userDto) {
         userService.save(userDto);
-        return "redirect:/login";
+        return "save";
     }
 
     @GetMapping("login")
@@ -44,7 +44,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
-        return "redirect:/login";
+        return "logout";
     }
 
     @GetMapping
@@ -64,6 +64,6 @@ public class UserController {
     @GetMapping("delete/{userId}")
     public String deleteById(@PathVariable Long userId) {
         userServiceImpl.deleteById(userId);
-        return "redirect:/user/";
+        return "deleted";
     }
 }
