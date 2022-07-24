@@ -1,8 +1,8 @@
-package com.example.everyclub.service.user;
+package com.example.everyclub.domain.auth.service;
 
-import com.example.everyclub.controller.dto.SignUserRequest;
-import com.example.everyclub.controller.dto.SignUserResponse;
-import com.example.everyclub.repository.UserRepository;
+import com.example.everyclub.domain.auth.dto.SignUserRequest;
+import com.example.everyclub.domain.auth.dto.SignUserResponse;
+import com.example.everyclub.domain.auth.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

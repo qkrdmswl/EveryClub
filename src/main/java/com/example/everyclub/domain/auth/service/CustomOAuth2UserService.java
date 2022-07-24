@@ -1,9 +1,9 @@
-package com.example.everyclub.service.user;
+package com.example.everyclub.domain.auth.service;
 
-import com.example.everyclub.controller.dto.OAuthAttributes;
-import com.example.everyclub.controller.dto.SessionUserDto;
-import com.example.everyclub.entity.user.UserEntity;
-import com.example.everyclub.repository.UserRepository;
+import com.example.everyclub.domain.auth.dto.OAuthAttributes;
+import com.example.everyclub.domain.auth.dto.SessionUserDto;
+import com.example.everyclub.domain.auth.entity.UserEntity;
+import com.example.everyclub.domain.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

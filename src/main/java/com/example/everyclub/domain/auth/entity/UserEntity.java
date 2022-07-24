@@ -1,6 +1,6 @@
-package com.example.everyclub.entity.user;
+package com.example.everyclub.domain.auth.entity;
 
-import com.example.everyclub.entity.BaseTimeEntity;
+import com.example.everyclub.global.entity.BaseTimeEntity;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,7 +24,7 @@ public class UserEntity extends BaseTimeEntity implements UserDetails {
     private Long userId;
 
     @Column(name = "userEmail", length = 100, unique = true)
-    private String userEmail;  // Entity에서는 _(언더바) 금지. 오류 발생 가능성 있음
+    private String userEmail;  // Entity 에서는 _(언더바) 금지. 오류 발생 가능성 있음
 
     @Column(name = "snsId", length = 100)
     private String snsId;
@@ -33,19 +33,19 @@ public class UserEntity extends BaseTimeEntity implements UserDetails {
     private String userPassword;
 
     @Column(name = "userName", length = 100)
-    private String name;
+    private String userName;
 
     @Column(name = "userPhone", length = 20)
     private String userPhone;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "default ")
+    @Column(nullable = false)
     private Role role;
 
     @Builder // 빌더 자동 생성
     public UserEntity(Long id, String email, String name, String phone, Role role, String snsId, String password) {
         this.userId = id;
-        this.name = name;
+        this.userName = name;
         this.userEmail = email;
         this.userPhone = phone;
         this.userPassword = password;

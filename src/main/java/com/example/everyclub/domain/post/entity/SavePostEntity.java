@@ -1,16 +1,17 @@
-package com.example.everyclub.entity.post;
+package com.example.everyclub.domain.post.entity;
 
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.domain.auth.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 
-@Entity
+@Eager
 @Getter
 @Setter
-@Table(name = "PostLike") // Like는 sql 예약어라 사용불가...
-public class LikeEntity {
+@Table(name = "SavePost")
+public class SavePostEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

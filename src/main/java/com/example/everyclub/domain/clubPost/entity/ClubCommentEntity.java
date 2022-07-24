@@ -1,7 +1,7 @@
-package com.example.everyclub.entity.clubPost;
+package com.example.everyclub.domain.clubPost.entity;
 
-import com.example.everyclub.entity.BaseTimeEntity;
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.global.entity.BaseTimeEntity;
+import com.example.everyclub.domain.auth.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 

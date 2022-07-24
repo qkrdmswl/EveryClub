@@ -1,6 +1,6 @@
-package com.example.everyclub.entity.clubPost;
+package com.example.everyclub.domain.post.entity;
 
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.domain.auth.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "ClubPostLike")
-public class ClubLikeEntity {
+@Table(name = "PostLike") // Like는 sql 예약어라 사용불가...
+public class LikeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +21,7 @@ public class ClubLikeEntity {
     @JoinColumn(name = "user")
     private UserEntity user;
 
-
     @ManyToOne
-    @JoinColumn(name = "clubPost")
-    private ClubPostEntity clubPost;
+    @JoinColumn(name = "post")
+    private PostEntity post;
 }

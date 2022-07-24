@@ -1,7 +1,7 @@
-package com.example.everyclub.controller.dto;
+package com.example.everyclub.domain.auth.dto;
 
-import com.example.everyclub.entity.user.Role;
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.domain.auth.entity.Role;
+import com.example.everyclub.domain.auth.entity.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 

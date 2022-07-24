@@ -1,7 +1,7 @@
-package com.example.everyclub.config;
+package com.example.everyclub.global.config;
 
-import com.example.everyclub.service.user.CustomOAuth2UserService;
-import com.example.everyclub.service.user.UserDetailServiceImpl;
+import com.example.everyclub.domain.auth.service.CustomOAuth2UserService;
+import com.example.everyclub.domain.auth.service.UserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**", "/js/**",  "h2-console/**", "/auth/**", "/user/**","/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .antMatchers("/", "/css/**", "/images/**", "/js/**",  "h2-console/**", "/auth/**", "/user/**","/swagger-ui/**", "/v3/api-docs/**", "/post/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

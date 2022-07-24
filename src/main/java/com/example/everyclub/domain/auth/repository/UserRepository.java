@@ -1,6 +1,6 @@
-package com.example.everyclub.repository;
+package com.example.everyclub.domain.auth.repository;
 
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.domain.auth.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

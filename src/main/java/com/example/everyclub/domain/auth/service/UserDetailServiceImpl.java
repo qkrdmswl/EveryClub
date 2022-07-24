@@ -1,6 +1,6 @@
-package com.example.everyclub.service.user;
+package com.example.everyclub.domain.auth.service;
 
-import com.example.everyclub.repository.UserRepository;
+import com.example.everyclub.domain.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

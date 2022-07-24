@@ -1,11 +1,9 @@
-package com.example.everyclub.controller;
+package com.example.everyclub.domain.auth.controller;
 
-import com.example.everyclub.common.ApiResponse;
-import com.example.everyclub.controller.dto.SignUserRequest;
-import com.example.everyclub.controller.dto.SignUserResponse;
-import com.example.everyclub.controller.dto.UserDetailDto;
-import com.example.everyclub.service.user.AuthUserService;
-import com.example.everyclub.service.user.UserServiceImpl;
+import com.example.everyclub.domain.auth.dto.SignUserRequest;
+import com.example.everyclub.domain.auth.dto.UserDetailDto;
+import com.example.everyclub.domain.auth.service.AuthUserService;
+import com.example.everyclub.domain.auth.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
