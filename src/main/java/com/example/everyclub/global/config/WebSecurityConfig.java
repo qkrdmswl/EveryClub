@@ -38,9 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/", "/css/**", "/images/**", "/js/**",  "h2-console/**", "/auth/**", "/user/**").permitAll()
-                    .anyRequest().authenticated()
-
+                .antMatchers("/", "/css/**", "/images/**", "/js/**",  "h2-console/**", "/auth/**", "/user/**","/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/user/login")
