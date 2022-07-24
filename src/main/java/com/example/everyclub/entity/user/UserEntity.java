@@ -26,7 +26,7 @@ public class UserEntity extends BaseTimeEntity implements UserDetails {
     @Column(name = "userEmail", length = 100, unique = true)
     private String userEmail;  // Entity에서는 _(언더바) 금지. 오류 발생 가능성 있음
 
-    @Column(name = "snsId", length = 255)
+    @Column(name = "snsId", length = 100)
     private String snsId;
 
     @Column(name = "userPassword")
@@ -51,13 +51,6 @@ public class UserEntity extends BaseTimeEntity implements UserDetails {
         this.userPassword = password;
         this.role = role;
         this.snsId = snsId;
-    }
-
-    public UserEntity update(String name, String password, String phone) {
-        this.name = name;
-        this.userPassword = password;
-        this.userPhone = phone;
-        return this;
     }
 
     public UserEntity updateSnsLogin() {

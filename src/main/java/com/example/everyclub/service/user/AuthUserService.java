@@ -1,38 +1,28 @@
 package com.example.everyclub.service.user;
 
-import com.example.everyclub.controller.dto.UserDto;
-import com.example.everyclub.entity.user.Role;
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.controller.dto.SignUserRequest;
+import com.example.everyclub.controller.dto.SignUserResponse;
 import com.example.everyclub.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 @Service
-@RequiredArgsConstructor
-public class AuthUserService implements UserDetailsService {
+@Slf4j
+public class AuthUserService  {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByUserEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(email));
+    @Autowired
+    public AuthUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public Long save(UserDto userDto) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        userDto.setUserPassword(encoder.encode(userDto.getUserPassword()));
-
-        return userRepository.save(UserEntity.builder()
-                .email(userDto.getUserEmail())
-                .role(Role.USER)
-                .password(userDto.getUserPassword())
-                .phone(userDto.getUserPhone())
-                .name(userDto.getUserName())
-                .build()).getUserId();
+    public SignUserResponse save(SignUserRequest userDto) {
+        return new SignUserResponse(userRepository.save(userDto.toEntity(passwordEncoder)).getUserId());
     }
 }
