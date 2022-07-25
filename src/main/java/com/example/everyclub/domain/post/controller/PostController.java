@@ -21,7 +21,6 @@ public class PostController {
     @GetMapping("/read/{postId}")
     public ApiResponse<PostDto> read(@PathVariable Long postId, Model model) {
         postService.updateView(postId);
-        model.addAttribute("post", postService.findPost(postId));
         return new ApiResponse<>(postService.findPost(postId));
     }
 

@@ -14,6 +14,6 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByUser(UserEntity user);
 
     @Modifying
-    @Query(value = "update Post p set p,postViews = p.postViews + 1 where p.postId = :postId", nativeQuery = true)
+    @Query(value = "update Post set postViews = postViews + 1 where postId = :postId", nativeQuery = true)
     Integer updateView(Long postId);
 }

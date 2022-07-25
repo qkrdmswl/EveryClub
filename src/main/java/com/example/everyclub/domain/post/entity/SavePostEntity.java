@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @Eager
 @Getter
-@Setter
 @Table(name = "SavePost")
 public class SavePostEntity {
 
