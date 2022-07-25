@@ -1,4 +1,4 @@
-package com.example.everyclub.entity.user;
+package com.example.everyclub.domain.auth.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

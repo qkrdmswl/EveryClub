@@ -1,17 +1,16 @@
-package com.example.everyclub.entity.post;
+package com.example.everyclub.domain.clubPost.entity;
 
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.domain.auth.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 
-@Eager
+@Entity
 @Getter
 @Setter
-@Table(name = "SavePost")
-public class SavePostEntity {
+@Table(name = "ClubPostLike")
+public class ClubLikeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +21,8 @@ public class SavePostEntity {
     @JoinColumn(name = "user")
     private UserEntity user;
 
+
     @ManyToOne
-    @JoinColumn(name = "post")
-    private PostEntity post;
+    @JoinColumn(name = "clubPost")
+    private ClubPostEntity clubPost;
 }

@@ -1,4 +1,4 @@
-package com.example.everyclub.entity;
+package com.example.everyclub.global.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

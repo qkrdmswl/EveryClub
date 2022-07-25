@@ -1,6 +1,6 @@
-package com.example.everyclub.entity.club;
+package com.example.everyclub.domain.club.entity;
 
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.domain.auth.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 

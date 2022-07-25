@@ -1,13 +1,13 @@
-package com.example.everyclub.controller;
+package com.example.everyclub.domain.auth.controller;
 
-import com.example.everyclub.controller.dto.UserDetailDto;
-import com.example.everyclub.controller.dto.UserDto;
-import com.example.everyclub.service.user.AuthUserService;
-import com.example.everyclub.service.user.UserServiceImpl;
+import com.example.everyclub.domain.auth.dto.SignUserRequest;
+import com.example.everyclub.domain.auth.dto.UserDetailDto;
+import com.example.everyclub.domain.auth.service.AuthUserService;
+import com.example.everyclub.domain.auth.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
@@ -23,22 +23,12 @@ public class UserController {
     private final UserServiceImpl userServiceImpl;
     private final AuthUserService userService;
 
-    // 회원가입 페이지 요청
-    @GetMapping("save")
-    public String saveForm() {
-        return "user/save";
-    }
-
     // 회원가입 정보 저장
-    @PostMapping("save")
-    public String save(UserDto userDto) {
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public SignUserRequest save(@RequestBody SignUserRequest userDto) {
         userService.save(userDto);
-        return "save";
-    }
-
-    @GetMapping("login")
-    public String loginForm() {
-        return "user/login";
+        return userDto;
     }
 
     @GetMapping("/logout")

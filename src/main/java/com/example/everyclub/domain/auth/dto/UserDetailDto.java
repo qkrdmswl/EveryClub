@@ -1,6 +1,6 @@
-package com.example.everyclub.controller.dto;
+package com.example.everyclub.domain.auth.dto;
 
-import com.example.everyclub.entity.user.UserEntity;
+import com.example.everyclub.domain.auth.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class UserDetailDto {
         userDetailDto.setUserId(userEntity.getUserId());
         userDetailDto.setUserEmail(userEntity.getUserEmail());
         userDetailDto.setUserPassword(userEntity.getUserPassword());
-        userDetailDto.setUserName(userEntity.getName());
+        userDetailDto.setUserName(userEntity.getUsername());
         return userDetailDto;
     }
 

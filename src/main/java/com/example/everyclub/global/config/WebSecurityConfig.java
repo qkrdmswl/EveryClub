@@ -1,12 +1,11 @@
-package com.example.everyclub.config;
+package com.example.everyclub.global.config;
 
-import com.example.everyclub.service.user.AuthUserService;
-import com.example.everyclub.service.user.CustomOAuth2UserService;
+import com.example.everyclub.domain.auth.service.CustomOAuth2UserService;
+import com.example.everyclub.domain.auth.service.UserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
-    private  final AuthUserService authUserService;
+    private  final UserDetailServiceImpl authUserService;
 
     @Override
     @Bean // 개발자가 직접 제어가 불가능한 외부 라이브러리를 Bean으로 만들 때
@@ -26,31 +25,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Bean
+    public BCryptPasswordEncoder encodePassword() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .headers().frameOptions().disable()
+                    .headers().frameOptions().disable()
+
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**", "/js/**",  "h2-console/**", "/auth/**", "/user/**","/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .antMatchers("/", "/css/**", "/images/**", "/js/**",  "h2-console/**", "/auth/**", "/user/**","/swagger-ui/**", "/v3/api-docs/**", "/post/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/user/login")
-                .defaultSuccessUrl("/")
+                    .loginPage("/user/login")
+                    .defaultSuccessUrl("/")
+
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
+                    .logoutSuccessUrl("/")
+
                 .and()
                 .oauth2Login()
-                .userInfoEndpoint()
-                .userService(customOAuth2UserService);
-    }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(authUserService)
-                .passwordEncoder(new BCryptPasswordEncoder());
+                    .userInfoEndpoint()
+                    .userService(customOAuth2UserService);
     }
 }
